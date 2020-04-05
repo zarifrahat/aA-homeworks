@@ -23,6 +23,7 @@ def bfs(starting_node, target_value)
                     return neighbor
                 else
                     queue += neighbor.neighbors
+                    queue.shift
                 end
             end
         end
