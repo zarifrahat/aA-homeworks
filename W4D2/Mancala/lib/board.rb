@@ -1,4 +1,4 @@
-# require "byebug"
+require "byebug"
 class Board
   attr_accessor :cups, :length
 
@@ -20,11 +20,11 @@ class Board
   end
 
   def valid_move?(start_pos)
-    if (@cups[start_pos-1] != nil) && (@cups[start_pos-1].length == 0)
+    if (@cups[start_pos] != nil) && (@cups[start_pos].length == 0)
       raise "Starting cup is empty"
     end
     
-    if !(start_pos-1 >= 0) || !(start_pos <= @length)
+    if !(start_pos >= 0) || !(start_pos <= @length)
       raise 'Invalid starting cup'
     end
  
@@ -64,7 +64,9 @@ class Board
 
   def next_turn(ending_cup_idx, current_player_name)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
+    # debugger
     if @cups[ending_cup_idx].empty?
+      
       return :switch
     end
 
@@ -108,7 +110,9 @@ class Board
   end
 end
 
-b1 = Board.new("a","b")
-b1
+b1 = Board.new("Erica","James")
+# p b1.valid_move?(12)
 
-p b1.make_move(5,"a")
+p b1.make_move(0,"Erica")
+p b1.make_move(5, "Erica")
+# p b1.make_move(9,"James")
