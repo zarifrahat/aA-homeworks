@@ -66,16 +66,22 @@ class Board
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
     if @cups[ending_cup_idx].empty?
       return :switch
-    elsif current_player_name == @name1
-          if (0..5).to_a.include?(ending_cup_idx)
-            return :prompt
-          end
-    elsif current_player_name == @name2
-          if (7..12).to_a.include?(ending_cup_idx)
-            return :prompt
-          end
-    elsif !@cups[ending_cup_idx].empty?
-          ending_cup_idx
+    end
+
+    if current_player_name == @name1
+      if ending_cup_idx == 6
+        return :prompt
+      end
+    end
+
+    if current_player_name == @name2
+      if ending_cup_idx == 13
+        return :prompt
+      end
+    end
+
+    if !@cups[ending_cup_idx].empty?
+        return ending_cup_idx
     end
   end
 
