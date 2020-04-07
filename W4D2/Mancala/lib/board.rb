@@ -65,7 +65,7 @@ class Board
   def next_turn(ending_cup_idx, current_player_name)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
     # debugger
-    if @cups[ending_cup_idx].empty?
+    if @cups[ending_cup_idx].length == 1
       
       return :switch
     end
@@ -76,7 +76,7 @@ class Board
       end
     end
 
-    if current_player_name == @name2
+    if current_player_name == @name1
       if ending_cup_idx == 13
         return :prompt
       end
