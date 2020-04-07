@@ -1,3 +1,4 @@
+# require "byebug"
 class Board
   attr_accessor :cups, :length
 
@@ -30,25 +31,28 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+    # debugger
     temp_array = @cups[start_pos].dup
     @cups[start_pos] = []
     distribution_start_index = start_pos+1
-    temp_array.length.times do
-      if current_player_name.side == 1
-        next if distribution_start_index == 13
+    
+    if current_player_name == @name1
+      until temp_array.empty?
+        next distribution_start_index += 1 if distribution_start_index == 13
         @cups[distribution_start_index] << temp_array.pop
         distribution_start_index += 1
       end
     end
 
-    temp_array.length.times do
-      if current_player_name.side == 2
-        next if distribution_start_index == 6
+    
+    if current_player_name == @name2
+      until temp_array.empty?
+        next distribution_start_index += 1 if distribution_start_index == 6
         @cups[distribution_start_index] << temp_array.pop
         distribution_start_index += 1
       end
     end
-
+    distribution_start_index
   end
 
   def next_turn(ending_cup_idx)
@@ -71,4 +75,6 @@ class Board
 end
 
 b1 = Board.new("a","b")
-p b1
+b1
+
+p b1.make_move(5,"a")
