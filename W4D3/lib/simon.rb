@@ -1,3 +1,5 @@
+#his
+
 require "byebug"
 class Simon
   COLORS = %w(red blue green yellow)
@@ -16,24 +18,26 @@ class Simon
       take_turn
     end
     game_over_message
-    return
+    
     reset_game
   end
 
   def take_turn
-    # debugger
-    while !game_over    
-      show_sequence
-      require_sequence
+    # debugger      
+    show_sequence
+    require_sequence
+    if !game_over    
+
       if @game_over == false
         round_success_message
         @sequence_length += 1
-        next
-      else
-        break
+      #   next
+      # else
+      #   break
       end
     end
   end
+
 
   def show_sequence
    add_random_color
