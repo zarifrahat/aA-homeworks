@@ -16,6 +16,7 @@ class Simon
       take_turn
     end
     game_over_message
+    return
     reset_game
   end
 
@@ -28,26 +29,28 @@ class Simon
         round_success_message
         @sequence_length += 1
         next
+      else
+        break
       end
     end
   end
 
   def show_sequence
    add_random_color
-   puts seq
+   puts @seq
   end
 
   def require_sequence
     puts "What was the sequence? Tell me!"
     user_sequence = gets.chomp
     user_sequence_array = user_sequence.split(" ")
-    if user_sequence_array != seq
+    if user_sequence_array != @seq
       @game_over = true
     end
   end
 
   def add_random_color
-    seq << COLORS.sample
+    @seq << COLORS.sample
   end
 
   def round_success_message
@@ -59,9 +62,9 @@ class Simon
   end
 
   def reset_game
-    sequence_length = 1
-    game_over = false
-    seq = []
+    @sequence_length = 1
+    @game_over = false
+    @seq = []
   end
 end
 
