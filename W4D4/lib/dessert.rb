@@ -42,6 +42,6 @@ class Dessert
   end
 
   def make_more
-    @chef.bake(self)
+    
   end
 end
