@@ -20,13 +20,13 @@ class Play
   end
 
   def self.find_by_title(title)
-    data = PlayDBConnection.instance.execute("SELECT playwright, title FROM plays")
+    data = PlayDBConnection.instance.execute("SELECT * FROM plays WHERE title = title")
     data.map { |datum| Play.new(datum) }
   end
 
 
   def self.find_by_playwright(playwright)
-    data = PlayDBConnection.instance.execute("SELECT title FROM plays")
+    data = PlayDBConnection.instance.execute("SELECT * FROM plays WHERE playwright = playwright")
     data.map { |datum| Play.new(datum) }
   end
   def initialize(options)
@@ -70,7 +70,7 @@ class Playwright
   end
 
   def self.find_by_name(name)
-    data = PlayDBConnection.instance.execute("SELECT name FROM playwrights")
+    data = PlayDBConnection.instance.execute("SELECT * FROM playwrights WHERE name = name")
     data.map { |datum| Play.new(datum) }
   end
 
@@ -107,7 +107,7 @@ class Playwright
     raise "#{self} not in database" unless self.id
     PlayDBConnection.instance.execute(<<-SQL, self.name, self.birth_year, self.id)
       SELECT
-        title
+        *
       FROM
         plays
       WHERE
