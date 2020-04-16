@@ -14,16 +14,15 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
+
 default: &default
   adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 5
+  timeout: 5000
 
 development:
   <<: *default
-  database: demo_project_development
+  database: intro_to_rails_houses_and_people
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
