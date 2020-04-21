@@ -70,6 +70,7 @@ class SnackBox
   def get_treat_tastiness(box_id)
     @data[box_id]["treat"]["tastiness"]
   end
+  
 end
 
 class CorgiSnacks
@@ -110,11 +111,13 @@ class MetaCorgiSnacks
   end
 
   def method_missing(name, *args)
-    # Your code goes here...
+    args.each do |arg|
+      p name.arg
+    end
   end
 
 
   def self.define_snack(name)
-    # Your code goes here...
+    MetaCorgiSnacks.new(snack_box, box_id).name
   end
 end
